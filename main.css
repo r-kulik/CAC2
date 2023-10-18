@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+body{
+    background-color: #282F44;
+}
+
+h1.mainTitle{
+    display: block;
+    size: 80px;
+    color: #F3E8EE;
+    font-family: "Roboto";
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.mainWrapper{
+    align-content: center;
+    padding-top: 250px;
+}
+
+.firstInputWrapper{
+    align-content: center;
+    width: fit-content;
+}
+
+input{
+    border-radius: 50px;
+  border: 2px solid #FF6666;
+  padding: 20px;
+  width: 500px;
+  height: 50px;
+  background-color:  #F3E8EE;
+  color: #282F44    ;
+  margin-right: 50px;
+}
+
+button{
+
+    border-radius: 50px;
+    border: 2px solid #FF6666;
+    padding: 20px;
+    width: 500px;
+    height: 50px;
+    background-color: #FF6666;
+    color: #F3E8EE;
+}
+
+p{
+    color: #F3E8EE;
+}
+
+h2{
+    color: #F3E8EE;
+}

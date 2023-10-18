@@ -12,8 +12,10 @@ const web3 = require("web3");
 const { exec } = require('child_process');
 const { getEnabledCategories } = require('trace_events');
 
-eval(fs.readFileSync('config.js')+'');
+// eval(fs.readFileSync(__dirname + '/config.js')+'');
 
+const ETHERSCAN_API_KEY = "5MQAQUQ9BGVJIUKGV46I78QH9AQRUZWKKP";
+console.log(ETHERSCAN_API_KEY)
 
 const app = express()
 const port = 3000
@@ -42,6 +44,10 @@ app.use(express.static(
 
 app.get('/', (req, res) => {
     res.render('index', { title: 'Hey', message: 'Hello there!' })  
+});
+
+app.get('/main.css', (req, res) => {
+    res.sendFile(__dirname + '/main.css');
 });
 
 app.get('/node_modules/web3/dist/web3.min.js', (req, res) => {
