@@ -1,0 +1,19 @@
+html
+  head
+    meta(charset='urf-8')
+    meta(http-equiv="X-UA-Compatible", content='IE=edge')
+    meta(name = 'viewport', content='width=device-width, initial-scale=1')
+    script(src='./node_modules/web3/dist/web3.min.js', type='text/javascript', defer)
+    script(src="./web3main.js", type='text/javascript', defer)
+    script(src="./page_script.js", type='text/javascript', defer)
+    title="Clone Any Contract"
+  body
+    h1= "Insert contract URL"
+    input(type="text", id="url_input_element")
+    button(id="click_button") clone and execute
+
+    .input_params(id="listDiv")
+        ul(id='input_params_list')
+
+    .function_selector(id="functionSelector")
+
