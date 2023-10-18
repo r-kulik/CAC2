@@ -18,10 +18,7 @@ function ExploreABI(url_input){
     let url_parts = url_text.split('/');
     let contract_address = url_parts[url_parts.length - 1];
     let request_url = window.location.href + 'get_abi/' + contract_address;
-    // console.log(request_url);
     let xhr = new XMLHttpRequest();
-
-    // 2. Настраиваем его: GET-запрос по URL /article/.../load
     xhr.open('GET', request_url);
     xhr.send();
     xhr.onload = () => {
@@ -30,11 +27,7 @@ function ExploreABI(url_input){
 }
 
 function handleABI(response){
-
     var innerList = document.getElementById("input_params_list");
-
-
-    // handling ABI to add a fileds to fill;
     let responseJSON = JSON.parse(response);
     var constructorFields = responseJSON[0]['inputs'];
 
@@ -99,15 +92,10 @@ function CAC(){
 
 function getArgumentConstructorValues(){
     let returnArray = [];
-    // console.log("names.length", names.length);
     for (var i = 0; i< names.length; i++){
-        // console.log("Блять");
         let inField = inFields[i]; 
-        // console.log(inField);
-        // console.log(inField.value);
         returnArray.push(inField.value);
     }
-    // console.log(returnArray);
     return {'args': returnArray};
 }
 

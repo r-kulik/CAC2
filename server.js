@@ -1,22 +1,14 @@
-// 
-
 const fs = require('fs');
 const express = require('express');
 const { hrtime } = require('process');
 const hre = require('hardhat');
 const { ethers } = require('hardhat');
 const abi = require('ethereumjs-abi');
-const { singletons } = require('@openzeppelin/test-helpers');
 require('@openzeppelin/test-helpers/configure');
-const web3 = require("web3");
 const { exec } = require('child_process');
 const { getEnabledCategories } = require('trace_events');
-
-// eval(fs.readFileSync(__dirname + '/config.js')+'');
-
 const ETHERSCAN_API_KEY = "5MQAQUQ9BGVJIUKGV46I78QH9AQRUZWKKP";
 console.log(ETHERSCAN_API_KEY)
-
 const app = express()
 const port = 3000
 
@@ -29,8 +21,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded());
-
-
 app.set('view engine', 'pug');
 app.use(express.static(
     'public',
@@ -38,26 +28,18 @@ app.use(express.static(
         "maxAge": '0'
     }
     ));
-
-
-
-
 app.get('/', (req, res) => {
     res.render('index', { title: 'Hey', message: 'Hello there!' })  
 });
-
 app.get('/main.css', (req, res) => {
     res.sendFile(__dirname + '/main.css');
 });
-
 app.get('/node_modules/web3/dist/web3.min.js', (req, res) => {
     res.sendFile(__dirname +'/node_modules/web3/dist/web3.min.js');
 })
-
 app.get('/web3main.js', (req, res) => {
     res.sendFile(__dirname + '/web3main.js');
 })
-
 app.get('/page_script.js', 
         (req, res) => {
             res.sendFile(__dirname + '/page_script.js')
@@ -101,17 +83,12 @@ async function handleContract(contractAddress, constructorArguments, res){
     let contractName = data['contractName'];
     console.log(constructorArguments);
     var ABI = await getContractAbiFromAddress(contractAddress);   
-    // console.log("data");
-    // let constructorArgumentsBinary = JSON.parse(data['constructorArguments']);
-    // let ABI = await getContractAbiFromAddress(contractAddress);
-    // let constructorArguments = pullArgumentsFromBinary(ABI, constructorArgumentsBinary);
-
     console.log("ABI BEFORE COMPLILATION:", ABI);
     let deployed_contract_adress = compileAndDeploy(contractAddress, contractName, constructorArguments, res, ABI);
     return deployed_contract_adress;
 }
 
-async function pullArgumentsFromBinary(ABI, constructorArgumentsBinary){
+/*async function pullArgumentsFromBinary(ABI, constructorArgumentsBinary){
     
     let constructorArgumentTypes = [];
     let input_types = ABI[0]['inputs'];
@@ -131,7 +108,7 @@ async function pullArgumentsFromBinary(ABI, constructorArgumentsBinary){
     decoded = await JSON.parse(JSON.stringify(decoded, null, '  '));
     console.log(decoded);
     return decoded;
-}
+}*/
 
 async function getContractAbiFromAddress(contractAddress) {
     let urlRequestAdress = "https://api.etherscan.io/"+
